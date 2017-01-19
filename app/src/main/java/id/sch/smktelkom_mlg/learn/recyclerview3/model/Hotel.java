@@ -2,19 +2,25 @@ package id.sch.smktelkom_mlg.learn.recyclerview3.model;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 /**
  * Created by user on 18/01/2017.
  */
-public class Hotel {
+public class Hotel implements Serializable {
 
-        public String judul;
-        public String deksripsi;
-        public Drawable foto;
+    public String judul;
+    public String detail;
+    public String lokasi;
+    public String foto;
+    public String deskripsi;
 
-             public Hotel(String judul, String deskripsi, Drawable foto)
+    public Hotel(String judul, String deskripsi,  String detail,  String lokasi, String foto)
                 {
                 this.judul = judul;
-                this.deksripsi = deskripsi;
-                this.foto = foto;
+                    this.deskripsi = deskripsi;
+                    this.detail = detail;
+                    this.lokasi = lokasi;
+                    this.foto = foto;
                 }
     }

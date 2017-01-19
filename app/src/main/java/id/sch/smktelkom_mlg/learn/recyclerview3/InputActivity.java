@@ -13,8 +13,8 @@ import android.widget.ImageView;
 
 import id.sch.smktelkom_mlg.learn.recyclerview3.model.Hotel;
 
-public class InputActivity extends AppCompatActivity {
-
+public class InputActivity extends AppCompatActivity
+{
     static final int REQUEST_IMAGE_GET = 1;
     EditText etJudul;
     EditText etDeskripsi;
@@ -25,7 +25,9 @@ public class InputActivity extends AppCompatActivity {
     Hotel hotel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
 
@@ -46,23 +48,6 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 doSave();
-            }
-
-            private void doSave() {
-
-                String judul = etJudul.getText().toString();
-                String deskripsi = etDeskripsi.getText().toString();
-                String detail = etDetail.getText().toString();
-                String lokasi = etLokasi.getText().toString();
-
-                if(isValid(judul, deskripsi, detail, lokasi, uriFoto))
-                {
-                    hotel = new Hotel(judul, deskripsi, detail, lokasi, uriFoto.toString());
-                    Intent intent = new Intent();
-                    intent.putExtra(MainActivity.HOTEL, hotel);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
             }
         });
 
@@ -85,6 +70,22 @@ public class InputActivity extends AppCompatActivity {
         ivFoto.setImageURI(uriFoto);
     }
 
+    private void doSave() {
+
+        String judul = etJudul.getText().toString();
+        String deskripsi = etDeskripsi.getText().toString();
+        String detail = etDetail.getText().toString();
+        String lokasi = etLokasi.getText().toString();
+
+        if(isValid(judul, deskripsi, detail, lokasi, uriFoto))
+        {
+            hotel = new Hotel(judul, deskripsi, detail, lokasi, uriFoto.toString());
+            Intent intent = new Intent();
+            intent.putExtra(MainActivity.HOTEL, hotel);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
     private boolean isValid(String judul, String deskripsi, String detail, String lokasi, Uri uriFoto) {
         boolean valid = true;
         if(judul.isEmpty())
@@ -140,11 +141,10 @@ public class InputActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK);
+        if(requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK)
         {
             uriFoto = data.getData();
             ivFoto.setImageURI(uriFoto);
         }
     }
-
 }
